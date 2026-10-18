@@ -60,6 +60,32 @@
     return PAGE === "home" ? "#" + hash : withLang("index.html#" + hash);
   }
 
+  var REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function demoItems(pred) {
+    return (D.demos ? D.demos.items : []).filter(pred);
+  }
+
+  // Muted looping preview; with reduced motion it waits for the viewer to press play.
+  function videoPreview(item, cls) {
+    var v = h("video", {
+      class: cls, src: item.src, poster: item.poster, muted: "", loop: "", playsinline: "",
+      preload: "metadata", autoplay: REDUCED ? null : "", controls: REDUCED ? "" : null,
+      "aria-label": t(item.title)
+    });
+    v.muted = true;
+    v.addEventListener("error", function () { v.style.display = "none"; });
+    return v;
+  }
+
+  function linkButtons(items) {
+    if (!items.length) return null;
+    return h("div", { class: "links" }, items.map(function (it) {
+      return h("a", { class: "btn btn--sm", href: it.href, target: "_blank", rel: "noopener" },
+        t(it.kind) + " ↗");
+    }));
+  }
+
   function chips(list) {
     return h("ul", { class: "chips" }, list.map(function (s) { return h("li", { text: s }); }));
   }
@@ -67,6 +93,7 @@
   /* ---------- header ---------- */
   function renderHeader() {
     var nav = h("nav", { class: "bar__nav", "aria-label": "Sections" },
+      h("a", { href: homeLink("demos"), text: ui("navDemos") }),
       h("a", { href: homeLink("cases"), text: ui("navCases") }),
       h("a", { href: withLang("journey.html"), text: ui("navJourney"), "aria-current": PAGE === "journey" ? "page" : null }),
       h("a", { href: homeLink("prototypes"), text: ui("navPrototypes") }),
@@ -162,6 +189,8 @@
 
   function renderCase(c) {
     var wip = c.status === "wip";
+    var vids = demoItems(function (it) { return it.caseId === c.id && it.type === "video"; });
+    var links = demoItems(function (it) { return it.caseId === c.id && it.type === "link"; });
     return h("article", { class: "case" + (wip ? " case--wip" : ""), id: "case-" + c.id },
       h("header", { class: "case__head" },
         h("span", { class: "case__id", text: c.id }),
@@ -179,6 +208,7 @@
           h("ul", { class: "bullets" }, t(c.solution).map(function (s) { return h("li", { text: s }); }))
         ),
         h("div", { class: "case__side" },
+          vids.map(function (it) { return videoPreview(it, "case__video"); }),
           c.metric ? h("div", { class: "metric" },
             h("span", { class: "metric__v", text: c.metric.v }),
             h("span", { class: "metric__l", text: t(c.metric.l) })
@@ -186,9 +216,36 @@
           h("h4", { class: "label", text: ui("result") }),
           h("p", { text: t(c.result) }),
           h("h4", { class: "label", text: ui("stack") }),
-          chips(c.stack)
+          chips(c.stack),
+          linkButtons(links)
         )
       )
+    );
+  }
+
+  function renderDemos() {
+    var M = D.demos;
+    if (!M) return null;
+    var head = sectionHead("▶", t(M.title), t(M.lead), M.items.length);
+    head.querySelector("h2").id = "demos-title";
+    return h("section", { id: "demos", class: "section wrap", "aria-labelledby": "demos-title" },
+      head,
+      h("div", { class: "demos" }, M.items.map(function (it) {
+        var isVideo = it.type === "video";
+        var body = h("div", { class: "demo__body" },
+          h("span", { class: "badge", text: t(it.kind) }),
+          h("h3", { text: t(it.title) }),
+          h("p", { text: t(it.caption) }),
+          h("div", { class: "links" },
+            it.href ? h("a", { class: "btn btn--sm btn--primary", href: it.href, target: "_blank", rel: "noopener" }, t(M.open) + " ↗") : null,
+            it.caseId ? h("a", { class: "btn btn--sm", href: "#case-" + it.caseId, text: t(M.toCase) + " " + it.caseId }) : null
+          )
+        );
+        return h("article", { class: "demo" + (isVideo ? " demo--video" : "") },
+          isVideo ? videoPreview(it, "demo__video") : null,
+          body
+        );
+      }))
     );
   }
 
@@ -197,6 +254,7 @@
       return h("li", null, h("a", { href: "#cat-" + cat.id },
         h("b", { text: cat.id }), " ", t(cat.title)));
     });
+    if (D.qa) items.push(h("li", null, h("a", { href: "#qa" }, h("b", { text: "QA" }), " ", t(D.qa.title))));
     items.push(h("li", null, h("a", { href: withLang("journey.html") }, h("b", { text: "G" }), " ", t(D.journey.title))));
     items.push(h("li", null, h("a", { href: "#prototypes" }, h("b", { text: "H" }), " ", ui("navPrototypes"))));
     return h("nav", { class: "catnav", "aria-label": ui("navCases") }, h("ul", null, items));
@@ -216,6 +274,24 @@
       ));
     });
     return wrap;
+  }
+
+  function renderQA() {
+    var Q = D.qa;
+    if (!Q) return null;
+    var head = sectionHead("QA", t(Q.title), t(Q.lead));
+    head.querySelector("h2").id = "qa-title";
+    return h("section", { id: "qa", class: "section wrap", "aria-labelledby": "qa-title" },
+      head,
+      h("div", { class: "qa" }, Q.blocks.map(function (b) {
+        return h("article", { class: "panel" },
+          h("h3", { class: "qa__title", text: t(b.title) }),
+          h("ul", { class: "bullets" }, t(b.points).map(function (p) { return h("li", { text: p }); })),
+          h("h4", { class: "label", text: ui("stack") }),
+          chips(b.stack)
+        );
+      }))
+    );
   }
 
   function renderJourneyTeaser() {
@@ -288,11 +364,12 @@
         h("th", { scope: "col", text: ui("goal") }),
         h("th", { scope: "col", text: ui("inside") })
       )),
-      h("tbody", null, J.rows.map(function (r) {
+      h("tbody", null, J.rows.map(function (r, i) {
+        var links = demoItems(function (it) { return it.row === i; });
         return h("tr", null,
           h("th", { scope: "row", "data-label": ui("niche"), text: t(r.niche) }),
           h("td", { "data-label": ui("goal"), text: t(r.goal) }),
-          h("td", { "data-label": ui("inside"), text: t(r.inside) })
+          h("td", { "data-label": ui("inside") }, t(r.inside), linkButtons(links))
         );
       }))
     );
@@ -334,7 +411,7 @@
       main.replaceChildren.apply(main, renderJourneyPage());
     } else {
       document.title = D.person.name + " — " + t(D.person.role);
-      main.replaceChildren(renderHero(), renderAbout(), renderCases(), renderJourneyTeaser(), renderPrototypes(), renderContacts());
+      main.replaceChildren(renderHero(), renderDemos(), renderAbout(), renderCases(), renderQA(), renderJourneyTeaser(), renderPrototypes(), renderContacts());
     }
     renderHeader();
     renderFooter();

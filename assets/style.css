@@ -217,6 +217,36 @@ p, li, dd, td, th { overflow-wrap: break-word; }
 }
 .chips--muted li { color: var(--muted); background: var(--surface-2); border-color: var(--line-2); }
 
+/* ---------- demos ---------- */
+.demos { display: grid; gap: 16px; }
+@media (min-width: 640px) { .demos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1000px) { .demos { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.demo {
+  display: flex; flex-direction: column; min-width: 0; background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+}
+.demo:hover { border-color: var(--line-2); }
+.demo--video { flex-direction: row; }
+@media (min-width: 1000px) { .demo--video { grid-row: span 2; flex-direction: column; } }
+.demo__video { display: block; width: 42%; flex: 0 0 42%; aspect-ratio: 9 / 16; object-fit: cover; background: #000; }
+@media (min-width: 1000px) { .demo__video { width: 100%; flex: 0 0 auto; max-height: 420px; } }
+.demo__body { display: flex; flex-direction: column; gap: 10px; padding: 20px; min-width: 0; flex: 1 1 auto; }
+.demo__body .badge { align-self: flex-start; color: var(--accent); border-color: rgba(56, 224, 160, 0.35); }
+.demo__body h3 { font-size: 18px; font-weight: 650; }
+.demo__body p { color: var(--muted); font-size: 14.5px; }
+.demo__body .links { margin-top: auto; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.btn--sm { min-height: 36px; padding: 0 12px; font-size: 13.5px; border-radius: 8px; }
+.case__video { display: block; width: 100%; max-width: 220px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); background: #000; margin-bottom: 18px; }
+.niches td .links { margin-top: 10px; }
+
+/* ---------- QA block ---------- */
+.qa { display: grid; gap: 16px; }
+@media (min-width: 900px) { .qa { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.qa__title { font-size: clamp(17px, 2.2vw, 19px); font-weight: 650; margin-bottom: 14px; }
+.qa .bullets li { color: var(--text); opacity: 0.92; }
+.sec-head__code { min-width: 44px; width: auto; padding: 0 8px; }
+
 /* ---------- journey teaser ---------- */
 .teaser {
   display: flex; gap: 16px; align-items: flex-start; padding: 26px; border-radius: var(--radius); color: var(--text);

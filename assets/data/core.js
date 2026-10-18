@@ -9,6 +9,7 @@ window.PORTFOLIO = {
   },
 
   ui: {
+    navDemos: { ru: "Демо", ua: "Демо", en: "Demos" },
     navCases: { ru: "Кейсы", ua: "Кейси", en: "Cases" },
     navJourney: { ru: "Путь клиента", ua: "Шлях клієнта", en: "Customer journey" },
     navPrototypes: { ru: "Прототипы", ua: "Прототипи", en: "Prototypes" },
