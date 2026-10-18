@@ -199,6 +199,9 @@ p, li, dd, td, th { overflow-wrap: break-word; }
 }
 .badge--wip { color: var(--warn); border-color: rgba(255, 182, 72, 0.4); background: var(--warn-soft); }
 .case--wip { border-color: rgba(255, 182, 72, 0.25); }
+.badge--active { color: var(--warn); border-color: rgba(255, 182, 72, 0.4); background: var(--warn-soft); }
+.badge--waiting { color: var(--blue); border-color: rgba(92, 195, 255, 0.4); background: rgba(92, 195, 255, 0.08); }
+.badge--paused { color: var(--muted); }
 
 .case__body { display: grid; gap: 22px; }
 @media (min-width: 900px) {

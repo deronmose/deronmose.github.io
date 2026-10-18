@@ -13,6 +13,7 @@ window.PORTFOLIO = {
     navCases: { ru: "Кейсы", ua: "Кейси", en: "Cases" },
     navJourney: { ru: "Путь клиента", ua: "Шлях клієнта", en: "Customer journey" },
     navPrototypes: { ru: "Прототипы", ua: "Прототипи", en: "Prototypes" },
+    navInwork: { ru: "В работе", ua: "В роботі", en: "In progress" },
     navAbout: { ru: "Обо мне", ua: "Про мене", en: "About" },
     navContacts: { ru: "Контакты", ua: "Контакти", en: "Contact" },
     kicker: { ru: "портфолио / автоматизация и AI", ua: "портфоліо / автоматизація та AI", en: "portfolio / automation & AI" },

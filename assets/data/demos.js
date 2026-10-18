@@ -41,7 +41,7 @@ window.PORTFOLIO.demos = {
       caption: { ru: "Тот же дилер: вход в воронку — квиз проходит прямо в мессенджере с дожимами.", ua: "Той самий дилер: вхід у воронку — квіз проходить просто в месенджері з дотисненнями.", en: "Same dealer: funnel entry — the quiz runs inside the messenger with follow-ups." }
     },
     {
-      type: "link", href: "https://support.leeloo.ai/", caseId: "C3",
+      type: "link", href: "https://support.leeloo.ai/", caseId: "W1",
       kind: { ru: "Сайт", ua: "Сайт", en: "Website" },
       title: { ru: "support.leeloo.ai", ua: "support.leeloo.ai", en: "support.leeloo.ai" },
       caption: { ru: "Сайт поддержки на 3 языках с каталогом кейсов и админкой (v1).", ua: "Сайт підтримки 3 мовами з каталогом кейсів і адмінкою (v1).", en: "A 3-language support site with a case catalogue and admin panel (v1)." }

@@ -78,6 +78,12 @@
     return v;
   }
 
+  // W-ids live on the "in progress" page, the rest on the home page.
+  function caseHref(id) {
+    if (id.charAt(0) === "W") return PAGE === "inwork" ? "#case-" + id : withLang("inwork.html#case-" + id);
+    return homeLink("case-" + id);
+  }
+
   function linkButtons(items) {
     if (!items.length) return null;
     return h("div", { class: "links" }, items.map(function (it) {
@@ -96,6 +102,7 @@
       h("a", { href: homeLink("demos"), text: ui("navDemos") }),
       h("a", { href: homeLink("cases"), text: ui("navCases") }),
       h("a", { href: withLang("journey.html"), text: ui("navJourney"), "aria-current": PAGE === "journey" ? "page" : null }),
+      D.inwork ? h("a", { href: withLang("inwork.html"), text: ui("navInwork"), "aria-current": PAGE === "inwork" ? "page" : null }) : null,
       h("a", { href: homeLink("prototypes"), text: ui("navPrototypes") }),
       h("a", { href: homeLink("about"), text: ui("navAbout") }),
       h("a", { href: homeLink("contacts"), text: ui("navContacts") })
@@ -238,7 +245,7 @@
           h("p", { text: t(it.caption) }),
           h("div", { class: "links" },
             it.href ? h("a", { class: "btn btn--sm btn--primary", href: it.href, target: "_blank", rel: "noopener" }, t(M.open) + " ↗") : null,
-            it.caseId ? h("a", { class: "btn btn--sm", href: "#case-" + it.caseId, text: t(M.toCase) + " " + it.caseId }) : null
+            it.caseId ? h("a", { class: "btn btn--sm", href: caseHref(it.caseId), text: t(M.toCase) + " " + it.caseId }) : null
           )
         );
         return h("article", { class: "demo" + (isVideo ? " demo--video" : "") },
@@ -257,6 +264,7 @@
     if (D.qa) items.push(h("li", null, h("a", { href: "#qa" }, h("b", { text: "QA" }), " ", t(D.qa.title))));
     items.push(h("li", null, h("a", { href: withLang("journey.html") }, h("b", { text: "G" }), " ", t(D.journey.title))));
     items.push(h("li", null, h("a", { href: "#prototypes" }, h("b", { text: "H" }), " ", ui("navPrototypes"))));
+    if (D.inwork) items.push(h("li", null, h("a", { href: withLang("inwork.html") }, h("b", { text: "W" }), " ", t(D.inwork.title))));
     return h("nav", { class: "catnav", "aria-label": ui("navCases") }, h("ul", null, items));
   }
 
@@ -395,6 +403,53 @@
     ];
   }
 
+  /* ---------- in-progress page ---------- */
+  function renderInworkPage() {
+    var W = D.inwork, L = W.labels;
+    var list = W.items.map(function (c) {
+      var bullets = function (arr) {
+        return h("ul", { class: "bullets" }, t(arr).map(function (s) { return h("li", { text: s }); }));
+      };
+      return h("article", { class: "case case--wip", id: "case-" + c.id },
+        h("header", { class: "case__head" },
+          h("span", { class: "case__id", text: c.id }),
+          h("div", { class: "case__titles" },
+            h("h3", { text: t(c.title) }),
+            h("p", { class: "case__client", text: t(c.client) })
+          ),
+          h("span", { class: "badge badge--" + c.stage, text: t(L.stage[c.stage]) })
+        ),
+        h("div", { class: "case__body" },
+          h("div", { class: "case__main" },
+            h("h4", { class: "label", text: ui("task") }),
+            h("p", { text: t(c.task) }),
+            h("h4", { class: "label", text: t(L.done) }),
+            bullets(c.done)
+          ),
+          h("div", { class: "case__side" },
+            h("h4", { class: "label", text: t(L.next) }),
+            bullets(c.next),
+            h("h4", { class: "label", text: ui("stack") }),
+            chips(c.stack),
+            c.links ? h("div", { class: "links" }, c.links.map(function (l) {
+              return h("a", { class: "btn btn--sm", href: l.href, target: "_blank", rel: "noopener" }, t(l.label) + " ↗");
+            })) : null
+          )
+        )
+      );
+    });
+    return [
+      h("section", { class: "hero hero--sub wrap" },
+        h("a", { class: "back", href: withLang("index.html"), text: ui("back") }),
+        h("p", { class: "kicker", text: "> wip / " + ui("navInwork").toLowerCase() }),
+        h("h1", { text: t(W.title) }),
+        h("p", { class: "hero__lead", text: t(W.lead) })
+      ),
+      h("section", { class: "section wrap" }, h("div", { class: "cases" }, list)),
+      renderContacts()
+    ];
+  }
+
   function renderFooter() {
     var f = document.getElementById("foot");
     f.replaceChildren(h("div", { class: "wrap foot" },
@@ -409,6 +464,9 @@
     if (PAGE === "journey") {
       document.title = t(D.journey.title) + " — " + D.person.name;
       main.replaceChildren.apply(main, renderJourneyPage());
+    } else if (PAGE === "inwork") {
+      document.title = t(D.inwork.title) + " — " + D.person.name;
+      main.replaceChildren.apply(main, renderInworkPage());
     } else {
       document.title = D.person.name + " — " + t(D.person.role);
       main.replaceChildren(renderHero(), renderDemos(), renderAbout(), renderCases(), renderQA(), renderJourneyTeaser(), renderPrototypes(), renderContacts());

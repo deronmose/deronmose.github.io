@@ -44,26 +44,4 @@ window.PORTFOLIO.cases.push(
       metric: { v: "90", l: { ru: "дней продаж привязаны к UTM", ua: "днів продажів прив'язано до UTM", en: "days of sales attributed to UTMs" } },
       stack: ["Vanilla JS", "PHP (PDO)", "MySQL", "Facebook Marketing API", "Webhooks"]
     },
-    {
-      id: "C3", cat: "C", status: "wip",
-      title: { ru: "Новый support.leeloo.ai с админкой", ua: "Новий support.leeloo.ai з адмінкою", en: "New support.leeloo.ai with an admin panel" },
-      client: { ru: "Leeloo.ai", ua: "Leeloo.ai", en: "Leeloo.ai" },
-      task: {
-        ru: "Сайту поддержки нужен каталог кейсов на 3 языках и возможность править контент без разработчика.",
-        ua: "Сайту підтримки потрібен каталог кейсів 3 мовами й можливість редагувати контент без розробника.",
-        en: "The support site needed a case catalogue in 3 languages and a way to edit content without a developer."
-      },
-      solution: {
-        ru: ["Сайт на PHP 8 + JSON без базы данных, 3 языка, каталог из 28 кейсов.", "Скрытая админка-конструктор с 6 типами блоков.", "Деплой-пакет с plan / upload / rollback и проверками по живому URL."],
-        ua: ["Сайт на PHP 8 + JSON без бази даних, 3 мови, каталог із 28 кейсів.", "Прихована адмінка-конструктор із 6 типами блоків.", "Деплой-пакет із plan / upload / rollback і перевірками за живим URL."],
-        en: ["PHP 8 + JSON site with no database, 3 languages, a catalogue of 28 cases.", "A hidden admin page builder with 6 block types.", "Deploy package with plan / upload / rollback and checks against the live URL."]
-      },
-      result: {
-        ru: "v1 выложен 17.10.2026: проверки живого сайта 61/61, API 51/51; защита от CSRF, перебора паролей и XSS проверена. Идёт v2 — собственный каталог кейсов.",
-        ua: "v1 викладено 17.10.2026: перевірки живого сайту 61/61, API 51/51; захист від CSRF, перебору паролів і XSS перевірено. Триває v2 — власний каталог кейсів.",
-        en: "v1 shipped on 17.10.2026: live-site checks 61/61, API 51/51; CSRF, brute-force and XSS protection verified. v2 — a dedicated case catalogue — is under way."
-      },
-      metric: { v: "61/61", l: { ru: "проверок живого сайта", ua: "перевірок живого сайту", en: "live-site checks passed" } },
-      stack: ["PHP 8", "Vanilla JS", "bcrypt", "Atomic file writes", "Python checks", "FTP deploy"]
-    },
 );
