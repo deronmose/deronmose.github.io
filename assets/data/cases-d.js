@@ -23,29 +23,7 @@ window.PORTFOLIO.cases.push(
       stack: ["Python", "MCP SDK", "Binotel REST API", "Claude Skills + evals"]
     },
     {
-      id: "D2", cat: "D", status: "wip",
-      title: { ru: "Тестирование MCP-коннектора: AI-агент собирает воронки", ua: "Тестування MCP-конектора: AI-агент збирає воронки", en: "Testing an MCP connector: an AI agent builds funnels" },
-      client: { ru: "Leeloo.ai", ua: "Leeloo.ai", en: "Leeloo.ai" },
-      task: {
-        ru: "Проверить, может ли Claude собирать воронки продаж вместо человека, и найти, где коннектор подводит.",
-        ua: "Перевірити, чи може Claude збирати воронки продажів замість людини, і знайти, де конектор підводить.",
-        en: "Find out whether Claude can build sales funnels instead of a human, and where the connector falls short."
-      },
-      solution: {
-        ru: ["Аудит инструментов и функциональный прогон силами 5 агентов: 9/9 типов блоков, 12/12 типов контента, 8/8 кнопок, 21/27 действий.", "Реестр дыр G-001…G-054 с критичными находками — например, воронка не открывается в интерфейсе при «0 ошибок» валидации.", "Установка плагина «одним промптом», видеоинструкции."],
-        ua: ["Аудит інструментів і функціональний прогін силами 5 агентів: 9/9 типів блоків, 12/12 типів контенту, 8/8 кнопок, 21/27 дій.", "Реєстр дір G-001…G-054 з критичними знахідками — наприклад, воронка не відкривається в інтерфейсі при «0 помилок» валідації.", "Встановлення плагіна «одним промптом», відеоінструкції."],
-        en: ["Tool audit and a functional run by 5 agents: 9/9 block types, 12/12 content types, 8/8 buttons, 21/27 actions.", "A gap register G-001…G-054 with critical findings — e.g. a funnel that won't open in the UI despite ‘0 errors’ from validation.", "One-prompt plugin install, video guides."]
-      },
-      result: {
-        ru: "20 зафиксированных этапов с подтверждёнными результатами; на этой базе собраны реальные клиентские воронки (см. «Путь клиента»).",
-        ua: "20 зафіксованих етапів із підтвердженими результатами; на цій базі зібрано реальні клієнтські воронки (див. «Шлях клієнта»).",
-        en: "20 logged stages with confirmed results; real client funnels were built on this base (see “Customer journey”)."
-      },
-      metric: { v: "54", l: { ru: "дыры в реестре для разработки", ua: "діри в реєстрі для розробки", en: "gaps logged for engineering" } },
-      stack: ["MCP", "Claude Code", "Subagents", "Jira"]
-    },
-    {
-      id: "D3", cat: "D", status: "done",
+      id: "D2", cat: "D", status: "done",
       title: { ru: "Скил запуска рекламы Meta", ua: "Скіл запуску реклами Meta", en: "Meta ads launch skill" },
       client: { ru: "Leeloo.ai", ua: "Leeloo.ai", en: "Leeloo.ai" },
       task: {
