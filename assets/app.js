@@ -2,6 +2,12 @@
 (function () {
   "use strict";
 
+  // Clickjacking guard: GitHub Pages can't send frame-ancestors, so refuse to render inside a foreign frame.
+  var foreignFrame = false;
+  try { foreignFrame = window.top !== window.self && window.top.location.origin !== location.origin; }
+  catch (e) { foreignFrame = true; }
+  if (foreignFrame) { document.documentElement.style.display = "none"; return; }
+
   var D = window.PORTFOLIO;
   var LANGS = ["ru", "ua", "en"];
   var HTML_LANG = { ru: "ru", ua: "uk", en: "en" };
