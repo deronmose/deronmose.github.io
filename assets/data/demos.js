@@ -9,6 +9,13 @@ window.PORTFOLIO.demos = {
   open: { ru: "Открыть", ua: "Відкрити", en: "Open" },
   toCase: { ru: "К кейсу", ua: "До кейсу", en: "See the case" },
   items: [
+    /* UPD 2026-10-30 */
+    {
+      type: "link", href: "https://github.com/deronmose/chat-archiver", caseId: "D3",
+      kind: { ru: "Код на GitHub", ua: "Код на GitHub", en: "Code on GitHub" },
+      title: { ru: "Chat Archiver", ua: "Chat Archiver", en: "Chat Archiver" },
+      caption: { ru: "Исходники, модель безопасности и скриншоты демо-режима.", ua: "Вихідний код, модель безпеки та скриншоти демо-режиму.", en: "Source code, security model and demo-mode screenshots." }
+    },
     {
       type: "video", caseId: "E3",
       src: "assets/media/ad-twin-preview.mp4", poster: "assets/media/ad-twin-poster.jpg",
