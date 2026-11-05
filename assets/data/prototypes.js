@@ -2,18 +2,18 @@
 window.PORTFOLIO.prototypes = [
     {
       id: "H1",
-      title: { ru: "Vision-бот контроля веса блюд", ua: "Vision-бот контролю ваги страв", en: "Vision bot for dish-weight control" },
+      title: { ru: "Vision-бот контроля веса блюд в сети кухонь", ua: "Vision-бот контролю ваги страв у мережі кухонь", en: "Vision bot for dish-weight control across a kitchen network" },
       client: { ru: "Суши-ресторан", ua: "Суші-ресторан", en: "Sushi restaurant" },
-      /* UPD 2026-11-05: v2 — Google Sheets, caption↔photo check, public repo */
+      /* UPD 2026-11-05: v4 — network of 4 kitchens, under/over tolerances, kitchen lock by Telegram ID, reports */
       idea: {
-        ru: "Повар фотографирует блюдо на весах и подписывает название или код. Бот читает вес с дисплея, сверяет его с техкартой (норма ± допуск) и проверяет, что на фото действительно это блюдо: лосось вместо угря — сразу «не совпадает». Техкарты и журнал — в Google Sheets, есть статистика за день.",
-        ua: "Кухар фотографує страву на вагах і підписує назву або код. Бот читає вагу з дисплея, звіряє її з техкартою (норма ± допуск) і перевіряє, що на фото справді ця страва: лосось замість вугра — одразу «не збігається». Техкарти й журнал — у Google Sheets, є статистика за день.",
-        en: "The cook photographs the dish on the scale and captions it with the name or code. The bot reads the weight off the display, checks it against the recipe card (norm ± tolerance) and verifies the photo really shows that dish — salmon instead of eel is flagged at once. Recipe cards and the log live in Google Sheets, with daily stats."
+        ru: "Сеть из 4 кухонь доставки работает по одной техкарте. Повар фотографирует порцию на весах и подписывает название или код. Бот читает вес с дисплея, сверяет с техкартой (недовес строже — −2,9%, перевес мягче — +5%) и проверяет, что на фото действительно это блюдо. Точку определяет Telegram ID повара: закреплённый повар не запишет проверку в чужую точку. Журнал, страницы точек и сводка по сети — в Google Sheets.",
+        ua: "Мережа з 4 кухонь доставки працює за однією техкартою. Кухар фотографує порцію на вагах і підписує назву або код. Бот читає вагу з дисплея, звіряє з техкартою (недовага суворіше — −2,9%, перевага м'якше — +5%) і перевіряє, що на фото справді ця страва. Точку визначає Telegram ID кухаря: закріплений кухар не запише перевірку в чужу точку. Журнал, сторінки точок і зведення по мережі — у Google Sheets.",
+        en: "A network of 4 delivery kitchens cooks by one set of recipe cards. The cook photographs the portion on the scale and captions it with the name or code. The bot reads the weight off the display, checks it against the card (underweight is strict at −2.9%, overweight softer at +5%) and verifies the photo really shows that dish. The kitchen comes from the cook's Telegram ID, so a cook locked to one kitchen can't log into another. The log, per-kitchen pages and the network summary live in Google Sheets."
       },
       result: {
-        ru: "Вес читается верно на реальных фото; клиент утвердил допуск 2,9%. Версия 2: один запрос к Vision на фото, 5 вердиктов, подбор блюда по весу без подписи, обработка ошибок. Публичная демо-версия с вымышленным меню и 18 офлайн-тестами логики — на GitHub.",
-        ua: "Вага зчитується правильно на реальних фото; клієнт затвердив допуск 2,9%. Версія 2: один запит до Vision на фото, 5 вердиктів, підбір страви за вагою без підпису, обробка помилок. Публічна демоверсія з вигаданим меню та 18 офлайн-тестами логіки — на GitHub.",
-        en: "Weights read correctly on real photos; the client approved a 2.9% tolerance. Version 2: one Vision call per photo, 5 verdicts, weight-based dish matching without a caption, error handling. A public demo with a fictional menu and 18 offline logic tests is on GitHub."
+        ru: "Клиент утвердил допуск 2,9%. Версия 4: отчёты по ролям в Telegram, ежедневная сводка владельцу и менеджерам точек, страницы точек на формулах, 2 недели демо-истории. На тестовом стенде ложные «брак» у честного повара сведены к нулю, похожие подмены ловятся 6 из 6. Публичная демо-версия с вымышленной сетью и 78 офлайн-тестами — на GitHub.",
+        ua: "Клієнт затвердив допуск 2,9%. Версія 4: звіти за ролями в Telegram, щоденне зведення власнику й менеджерам точок, сторінки точок на формулах, 2 тижні демо-історії. На тестовому стенді хибні «брак» у сумлінного кухаря зведено до нуля, схожі підміни ловляться 6 з 6. Публічна демоверсія з вигаданою мережею та 78 офлайн-тестами — на GitHub.",
+        en: "The client approved a 2.9% tolerance. Version 4: role-based reports in Telegram, a daily summary for the owner and kitchen managers, formula-driven kitchen pages, two weeks of demo history. On the test stand, false rejects for an honest cook dropped to zero and look-alike substitutions are caught 6 of 6. A public demo with a fictional network and 78 offline tests is on GitHub."
       },
       stack: ["n8n", "OpenAI Vision", "Telegram", "Google Sheets"]
     },
