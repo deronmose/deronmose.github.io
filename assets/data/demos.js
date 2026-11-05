@@ -9,6 +9,13 @@ window.PORTFOLIO.demos = {
   open: { ru: "Открыть", ua: "Відкрити", en: "Open" },
   toCase: { ru: "К кейсу", ua: "До кейсу", en: "See the case" },
   items: [
+    /* UPD 2026-11-05 */
+    {
+      type: "link", href: "https://github.com/deronmose/sushi-qc-bot", caseId: "H1",
+      kind: { ru: "Код на GitHub", ua: "Код на GitHub", en: "Code on GitHub" },
+      title: { ru: "Sushi QC Bot", ua: "Sushi QC Bot", en: "Sushi QC Bot" },
+      caption: { ru: "Воркфлоу n8n, демо-техкарты на 30 блюд, инструкция по установке и офлайн-тесты.", ua: "Воркфлоу n8n, демо-техкарти на 30 страв, інструкція зі встановлення та офлайн-тести.", en: "n8n workflow, demo recipe cards for 30 dishes, setup guide and offline tests." }
+    },
     /* UPD 2026-10-30 */
     {
       type: "link", href: "https://github.com/deronmose/chat-archiver", caseId: "D3",

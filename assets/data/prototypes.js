@@ -4,15 +4,16 @@ window.PORTFOLIO.prototypes = [
       id: "H1",
       title: { ru: "Vision-бот контроля веса блюд", ua: "Vision-бот контролю ваги страв", en: "Vision bot for dish-weight control" },
       client: { ru: "Суши-ресторан", ua: "Суші-ресторан", en: "Sushi restaurant" },
+      /* UPD 2026-11-05: v2 — Google Sheets, caption↔photo check, public repo */
       idea: {
-        ru: "Повар фотографирует блюдо на весах, бот читает вес с дисплея и сверяет с техкартой (296 позиций меню парсятся с сайта ежедневно); вердикт, журнал, статистика.",
-        ua: "Кухар фотографує страву на вагах, бот читає вагу з дисплея й звіряє з техкартою (296 позицій меню парсяться із сайту щодня); вердикт, журнал, статистика.",
-        en: "The cook photographs a dish on the scale; the bot reads the weight off the display and checks it against the recipe card (296 menu items parsed from the website daily); verdict, log, stats."
+        ru: "Повар фотографирует блюдо на весах и подписывает название или код. Бот читает вес с дисплея, сверяет его с техкартой (норма ± допуск) и проверяет, что на фото действительно это блюдо: лосось вместо угря — сразу «не совпадает». Техкарты и журнал — в Google Sheets, есть статистика за день.",
+        ua: "Кухар фотографує страву на вагах і підписує назву або код. Бот читає вагу з дисплея, звіряє її з техкартою (норма ± допуск) і перевіряє, що на фото справді ця страва: лосось замість вугра — одразу «не збігається». Техкарти й журнал — у Google Sheets, є статистика за день.",
+        en: "The cook photographs the dish on the scale and captions it with the name or code. The bot reads the weight off the display, checks it against the recipe card (norm ± tolerance) and verifies the photo really shows that dish — salmon instead of eel is flagged at once. Recipe cards and the log live in Google Sheets, with daily stats."
       },
       result: {
-        ru: "Вес читается верно на реальных фото; клиент утвердил допуск 2,9%; подготовлено ТЗ на этапы — база в Google Sheets, распознавание блюда по фото.",
-        ua: "Вага зчитується правильно на реальних фото; клієнт затвердив допуск 2,9%; підготовлено ТЗ на етапи — база в Google Sheets, розпізнавання страви за фото.",
-        en: "Weights read correctly on real photos; the client approved a 2.9% tolerance; a phased spec prepared — Google Sheets base, dish recognition from photos."
+        ru: "Вес читается верно на реальных фото; клиент утвердил допуск 2,9%. Версия 2: один запрос к Vision на фото, 5 вердиктов, подбор блюда по весу без подписи, обработка ошибок. Публичная демо-версия с вымышленным меню и 18 офлайн-тестами логики — на GitHub.",
+        ua: "Вага зчитується правильно на реальних фото; клієнт затвердив допуск 2,9%. Версія 2: один запит до Vision на фото, 5 вердиктів, підбір страви за вагою без підпису, обробка помилок. Публічна демоверсія з вигаданим меню та 18 офлайн-тестами логіки — на GitHub.",
+        en: "Weights read correctly on real photos; the client approved a 2.9% tolerance. Version 2: one Vision call per photo, 5 verdicts, weight-based dish matching without a caption, error handling. A public demo with a fictional menu and 18 offline logic tests is on GitHub."
       },
       stack: ["n8n", "OpenAI Vision", "Telegram", "Google Sheets"]
     },

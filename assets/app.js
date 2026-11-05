@@ -331,6 +331,8 @@
         return head;
       })(),
       h("div", { class: "protos" }, D.prototypes.map(function (p) {
+        /* UPD 2026-11-05: prototypes show their demo links (e.g. "Code on GitHub") like cases do */
+        var links = demoItems(function (it) { return it.caseId === p.id && it.type === "link"; });
         return h("article", { class: "proto", id: "case-" + p.id },
           h("header", { class: "case__head" },
             h("span", { class: "case__id", text: p.id }),
@@ -345,7 +347,8 @@
           p.result ? h("h4", { class: "label", text: ui("prototypeResult") }) : null,
           p.result ? h("p", { text: t(p.result) }) : null,
           h("h4", { class: "label", text: ui("stack") }),
-          chips(p.stack)
+          chips(p.stack),
+          linkButtons(links)
         );
       }))
     );
