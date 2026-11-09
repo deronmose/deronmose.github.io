@@ -16,6 +16,53 @@ window.PORTFOLIO.inwork = {
     }
   },
   items: [
+    /* UPD 2026-11-09: собственная SaaS-CRM для товарного бизнеса */
+    {
+      id: "W6", stage: "active",
+      title: { ru: "SaaS-CRM для товарного бизнеса: корзина на сайте → заказ → бот → ТТН → оплата", ua: "SaaS-CRM для товарного бізнесу: кошик на сайті → замовлення → бот → ТТН → оплата", en: "SaaS CRM for product businesses: site cart → order → bot → shipping label → payment" },
+      client: { ru: "Собственный продукт", ua: "Власний продукт", en: "Own product" },
+      task: {
+        ru: "Привычная CRM для магазинов, которые продают через свои сайты и лендинги (UX по образцу KeyCRM). Товар в корзине на любом сайте сразу становится заказом в CRM, дальше заказ сам идёт по стадиям: уточнение данных в Telegram-боте, ТТН Новой Почты, оплата картой.",
+        ua: "Звична CRM для магазинів, які продають через свої сайти й лендинги (UX за зразком KeyCRM). Товар у кошику на будь-якому сайті одразу стає замовленням у CRM, далі замовлення саме йде стадіями: уточнення даних у Telegram-боті, ТТН Нової Пошти, оплата карткою.",
+        en: "A familiar CRM for shops selling through their own sites and landing pages (UX modelled on KeyCRM). An item added to the cart on any site instantly becomes an order in the CRM, which then moves through stages on its own: details collected by a Telegram bot, a Nova Poshta shipping label, card payment."
+      },
+      done: {
+        ru: [
+          "Ядро: мультиарендность, роли, заказы со статусами в группах, товары, клиенты, обновления в реальном времени (SSE), UA / RU / EN.",
+          "Виджет корзины одним скриптом (30 КБ, Shadow DOM) и публичный API с ключом сайта, проверкой домена, лимитами и защитой от гонок; опубликован на демо-сайте.",
+          "Telegram-бот на каждую компанию: диалог уточнения доставки, чат «покупатель ↔ менеджер» в карточке, уведомления.",
+          "Новая Почта: поиск городов и отделений, ТТН кнопкой и автоматически, наложенный платёж, трекинг меняет статус заказа.",
+          "Оплаты WayForPay: счёт, уведомления с перепроверкой статуса, возвраты; проверено вживую реальной картой.",
+          "279 автотестов; каждый этап — спецификация с критериями, тесты до кода и до 3 кругов независимой приёмки."
+        ],
+        ua: [
+          "Ядро: мультиорендність, ролі, замовлення зі статусами в групах, товари, клієнти, оновлення в реальному часі (SSE), UA / RU / EN.",
+          "Віджет кошика одним скриптом (30 КБ, Shadow DOM) і публічний API з ключем сайту, перевіркою домену, лімітами й захистом від гонок; опублікований на демо-сайті.",
+          "Telegram-бот на кожну компанію: діалог уточнення доставки, чат «покупець ↔ менеджер» у картці, сповіщення.",
+          "Нова Пошта: пошук міст і відділень, ТТН кнопкою й автоматично, накладений платіж, трекінг змінює статус замовлення.",
+          "Оплати WayForPay: рахунок, сповіщення з перевіркою статусу, повернення; перевірено наживо реальною карткою.",
+          "279 автотестів; кожен етап — специфікація з критеріями, тести до коду й до 3 кіл незалежного приймання."
+        ],
+        en: [
+          "Core: multi-tenancy, roles, orders with grouped statuses, products, customers, real-time updates (SSE), UA / RU / EN.",
+          "A one-script cart widget (30 KB, Shadow DOM) and a public API with site keys, domain checks, rate limits and race protection; live on a demo site.",
+          "A Telegram bot per company: a delivery-details dialog, a buyer ↔ manager chat inside the order card, notifications.",
+          "Nova Poshta: city and branch search, shipping labels on click or automatically, cash on delivery, tracking that updates the order status.",
+          "WayForPay payments: invoices, webhooks re-verified against the provider, refunds; tested live with a real card.",
+          "279 automated tests; every stage is a spec with acceptance criteria, tests before code and up to 3 rounds of independent review."
+        ]
+      },
+      next: {
+        ru: ["Коннекторы источников: лендинги Leeloo (LGT), WooCommerce, Shopify / Horoshop / Prom.", "Monobank и LiqPay, выкладка на сервер."],
+        ua: ["Конектори джерел: лендинги Leeloo (LGT), WooCommerce, Shopify / Horoshop / Prom.", "Monobank і LiqPay, викладка на сервер."],
+        en: ["Source connectors: Leeloo landing pages (LGT), WooCommerce, Shopify / Horoshop / Prom.", "Monobank and LiqPay, server deployment."]
+      },
+      stack: ["TypeScript", "Fastify", "Drizzle ORM", "PostgreSQL / PGlite", "React 19", "Vite", "Tailwind v4", "Telegram Bot API", "Nova Poshta API 2.0", "WayForPay", "Vitest"],
+      links: [
+        { href: "https://github.com/deronmose/shop-crm", label: { ru: "Код на GitHub", ua: "Код на GitHub", en: "Code on GitHub" } },
+        { href: "https://deronmose.github.io/shop-crm-demo-store/", label: { ru: "Демо-магазин с виджетом", ua: "Демо-магазин з віджетом", en: "Demo store with the widget" } }
+      ]
+    },
     {
       id: "W1", stage: "active",
       title: { ru: "Сайт кейсов support.leeloo.ai v2 с конструктором", ua: "Сайт кейсів support.leeloo.ai v2 з конструктором", en: "support.leeloo.ai v2: case site with a page builder" },
